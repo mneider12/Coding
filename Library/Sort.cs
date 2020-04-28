@@ -9,6 +9,8 @@ namespace Library
     /// </summary>
     public static class Sort
     {
+        #region counting sort
+
         /// <summary>
         /// sort input using a counting sort algorithm
         /// https://en.wikipedia.org/wiki/Counting_sort
@@ -46,6 +48,10 @@ namespace Library
 
             return sorted;
         }
+
+        #endregion counting sort
+
+        #region quicksort
 
         /// <summary>
         /// sort input using a quicksort
@@ -110,5 +116,7 @@ namespace Library
 
             return j;
         }
+
+        #endregion quicksort
     }
 }
