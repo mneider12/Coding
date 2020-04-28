@@ -1,4 +1,6 @@
 ﻿using Library.Interfaces;
+using System;
+using System.Globalization;
 
 namespace Library
 {
@@ -43,6 +45,70 @@ namespace Library
             }
 
             return sorted;
+        }
+
+        /// <summary>
+        /// sort input using a quicksort
+        /// https://en.wikipedia.org/wiki/Quicksort
+        /// </summary>
+        /// <typeparam name="T">type of input array</typeparam>
+        /// <param name="unsorted">unsorted array</param>
+        /// <returns>sorted array</returns>
+        public static T[] QuickSort<T>(T[] unsorted) where T : ISortable
+        {
+            Random random = new Random();
+
+            T[] sorting = new T[unsorted.Length];
+            Array.Copy(unsorted, sorting, unsorted.Length);
+
+            QuickSort(sorting, 0, sorting.Length - 1, random);
+
+            return sorting;
+        }
+
+        private static void QuickSort<T>(T[] sorting, int low, int high, Random random) where T : ISortable
+        {
+            if (low < high)
+            {
+                int partition = Partition(sorting, low, high, random);
+                QuickSort(sorting, low, partition, random);
+                QuickSort(sorting, partition + 1, high, random);
+            }
+        }
+
+        private static int Partition<T>(T[] sorting, int low, int high, Random random) where T : ISortable
+        {
+            int pivotIndex = random.Next(low, high + 1);
+            T pivot = sorting[pivotIndex];
+
+            int i = low - 1;
+            int j = high + 1;
+
+            while (true)
+            {
+                do
+                {
+                    i++;
+                }
+                while (sorting[i].Key < pivot.Key);
+                do
+                {
+                    j--;
+                } while (sorting[j].Key > pivot.Key);
+
+                if (i < j)
+                {
+                    T temp = sorting[i];
+                    sorting[i] = sorting[j];
+                    sorting[j] = temp;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            return j;
         }
     }
 }

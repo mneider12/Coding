@@ -27,8 +27,8 @@ namespace UnitTests
             new object[] { 4, new int[] { 1, 2, 3, 4, 4 }, 0 },
             new object[] { 3, new int[] { 10, 20, 30, 40, 50 }, 1 },
             new object[] { 1, new int[] { 1, 2, 3, 4, 5 }, 1 },
-            LoadData("LargeTest1.txt"),
-            LoadData("LargeTest2.txt"),
+            LoadData("FraudDetectionLargeTest1.txt"),
+            LoadData("FraudDetectionLargeTest2.txt"),
         };
 
         private static object[] LoadData(string filePath)
